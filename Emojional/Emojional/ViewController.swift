@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     let emojis = ["☺️" : "Happy","😞": "Sad"]
+    let customMessages = ["Happy" : ["You are awesome!", "So glad everything is going well", "Keep it up!" ], "Sad" : ["It's going to be okay", "It's normal to feel sad once in a while. Things will change again and you will be happy again!", "It's going to be okay!"]]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +22,22 @@ class ViewController: UIViewController {
     // We want to create another constant that will store information about what the user just tapped
         
         let selectedEmotion = sender.titleLabel?.text
-
+        
+//        showMessage.color() = UIColor.black
+// No color codes - stored in UI Color black 
+        
+        
+        
+        let emotionArray = customMessages[emojis[selectedEmotion!]!]
+        
+        let random = Int.random(in: 0..<emotionArray!.count)
+        
+        let emojiMessage = emotionArray?[random]
+        
+        
         //When the user clicks the Emoji button
         // Messages pop up that are encouraging, like, you got this! You can do this! Keep going! We are so proud of you!
-        let alertController = UIAlertController(title: "You're happy", message: emojis[selectedEmotion!], preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: "title", message: emojiMessage, preferredStyle: UIAlertController.Style.alert)
         
        //allows the notification to pop up
         alertController.addAction(UIAlertAction(title:"Okay!", style: UIAlertAction.Style.default, handler: nil))
